@@ -6,6 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "scripts": {
+      …
+      "sonar": "node sonar-project.js"
+},
+ 
   "author": "Adem Cemil YALCIN",
   "license": "ISC"
 }
+
