@@ -1,4 +1,4 @@
-image: node:14  # Use an image that suits your project's requirements
+image: ubuntu  # Use an image that suits your project's requirements
 
 pipelines:
   default:
@@ -6,10 +6,5 @@ pipelines:
         name: Copy App to EC2
         script:
           - apt-get update && apt-get install -y openssh-client  # Install SSH client
-
           - scp -r ./app 54.87.60.6:/home/ubuntu/  # Replace with your actual path
 
-definitions:
-  services:
-    docker:
-      memory: 2048
