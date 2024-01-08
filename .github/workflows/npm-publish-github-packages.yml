@@ -1,5 +1,4 @@
 image: ubuntu  # Use an image that suits your project's requirements
-
 pipelines:
   default:
     - step:
