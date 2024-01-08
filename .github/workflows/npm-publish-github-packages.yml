@@ -17,5 +17,5 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y openssh-client
-          scp -o StrictHostKeyChecking=no -r ./app ubuntu@54.87.60.6:/home/ubuntu
+          sudo scp -o StrictHostKeyChecking=no -r ./app ubuntu@54.87.60.6:/home/ubuntu
 
