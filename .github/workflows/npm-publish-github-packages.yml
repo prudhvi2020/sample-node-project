@@ -1,14 +1,21 @@
-image: node:14  # Use an image that suits your project's requirements
+name: Copy App to EC2
 
-pipelines:
-  default:
-    - step:
-        name: Copy App to EC2
-        script:
-          - apt-get update && apt-get install -y openssh-client  # Install SSH client
-          - scp -r ./app ubuntu@54.87.60.6:/home/ubuntu  # Replace with your actual path
+on:
+  push:
+    branches:
+      - master  # Replace with your branch name
 
-definitions:
-  services:
-    docker:
-      memory: 2048
+jobs:
+  copy-to-ec2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Copy App to EC2
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-client
+          scp -r ./app ubuntu@54.87.60.6:/home/ubuntu  # Replace with your actual path
+
