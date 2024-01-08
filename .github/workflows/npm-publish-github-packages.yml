@@ -1,22 +1,23 @@
-name: Copy App to EC2
+name: Copy to Linux Server
 
 on:
   push:
     branches:
-      - master  # Replace with your branch name
+      - master  # adjust the branch name if needed
 
 jobs:
-  copy-to-ec2:
-    runs-on: ubuntu-latest
+  copy-to-server:
+    runs-on: ubuntu-latest  # GitHub Actions runner
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: Copy App to EC2
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y openssh-client
-          ls
-          scp -o StrictHostKeyChecking=no -r ./app ubuntu@54.87.60.6:/home/ubuntu
-
+    - name: Copy to Server
+      uses: appleboy/scp-action@master
+      with:
+        host: 34.201.92.1
+        username: ubuntu
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: "."
+        target: "/home/ubuntu/"
